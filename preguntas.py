@@ -50,20 +50,20 @@ def pregunta_02():
     # Imprima las dimensiones del DataFrame
     print(df.shape)
 
-    # Imprima la correlación entre las columnas `life` y `fertility` con 4 decimales.
-    print(df[['life','fertility']].corr().round(4))
+    # Imprima el valor de la correlación entre las columnas `life` y `fertility` con 4 decimales
+    print(df['life'].corr(df['fertility']).round(4))
+
+
 
     # Imprima la media de la columna `life` con 4 decimales.
     print(df['life'].mean().round(4))
 
 
     # Imprima el tipo de dato de la columna `fertility`.
-    print(df['fertility'].dtype)
+    print(type(df['fertility']))
 
     # Imprima la correlación entre las columnas `GDP` y `life` con 4 decimales.
-    print(df[['GDP','life']].corr().round(4))
-
-
+    print(df['GDP'].corr(df['life']).round(4))
 
 def pregunta_03():
     """
@@ -124,7 +124,7 @@ def pregunta_04():
 
     # Divida los datos de entrenamiento y prueba. La semilla del generador de números
     # aleatorios es 53. El tamaño de la muestra de entrenamiento es del 80%
-    (X_train, X_test, y_train, y_test,) = train_test_split(X_fertility, y_life, test_size=0.8, random_state=53)
+    (X_train, X_test, y_train, y_test,) = train_test_split(X_fertility.reshape(-1,1), y_life.reshape(-1,1), test_size=0.2, random_state=53)
     # Cree una instancia del modelo de regresión lineal
     linearRegression = LinearRegression()
 
